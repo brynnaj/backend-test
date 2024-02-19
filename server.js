@@ -1,9 +1,11 @@
-import express from 'express';
+const express = require('express')
 // import main from './script.js'
-import fs from 'fs'
-import cors from 'cors';
-import { config } from "dotenv";
-config();
+const fs = require('fs')
+const cors = require('cors')
+const dotenv = require( "dotenv")
+
+dotenv.config();
+
 
 
 // const express = require('express')
@@ -20,6 +22,7 @@ const API_KEY = process.env.API_KEY
 
 
 const app = express();
+const port = 4000
 app.use(express.json())
 app.use(cors())
 app.use(express.static('public')); //not working 
@@ -212,6 +215,9 @@ app.post('/ask', async (req, res) => {
 })
 
 
-app.listen(6747, () => {
-    console.log('Listen on port 6747');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+    
 })
+
+module.exports = app;
